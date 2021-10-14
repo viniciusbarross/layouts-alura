@@ -8,8 +8,10 @@ class ImagemElementGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image(
-        fit: BoxFit.cover,
-        image: AssetImage('utilidades/assets/imagens/' + pathImage));
+    return Positioned.fill(
+      child: Image(
+          fit: BoxFit.cover,
+          image: AssetImage('utilidades/assets/imagens/' + pathImage)),
+    );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lojinhaalura/model/movel.dart';
+import 'package:lojinhaalura/widgets/degradee_elem_grid.dart';
 import 'package:lojinhaalura/widgets/imagem_elem_grid.dart';
 
 class ElementoGrid extends StatelessWidget {
@@ -12,8 +13,11 @@ class ElementoGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
         elevation: 5,
-        child: Column(
-          children: [ImagemElementGrid(pathImage: movel.foto)],
+        child: Stack(
+          children: [
+            Expanded(child: ImagemElementGrid(pathImage: movel.foto)),
+            DegradeeElementGrid(),
+          ],
         ));
   }
 }

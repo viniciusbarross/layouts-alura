@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lojinhaalura/model/item_carrinho.dart';
 import 'package:lojinhaalura/pages/detailpage.dart';
 import 'package:lojinhaalura/controller/moveis_controller.dart';
 import 'package:lojinhaalura/model/movel.dart';
@@ -7,6 +8,8 @@ import 'package:lojinhaalura/widgets/appbarcustom.dart';
 import 'package:lojinhaalura/widgets/grid_custom.dart';
 
 class Inicio extends StatelessWidget {
+  static List<ItemCarrinho> itensCarrinho = [];
+
   const Inicio({Key? key}) : super(key: key);
 
   @override
@@ -36,7 +39,14 @@ class Inicio extends StatelessWidget {
           case ConnectionState.waiting:
             return CircularProgressIndicator();
           case ConnectionState.done:
-            return GridProdutos(moveis: moveis);
+            return Column(
+              children: [
+                Divider(),
+                Text('Produtos'),
+                Divider(),
+                Flexible(child: GridProdutos(moveis: moveis)),
+              ],
+            );
           // return ListView.builder(
           //   itemBuilder: (context, index) {
           //     return Card(

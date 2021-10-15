@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lojinhaalura/config_styles.dart';
 import 'package:lojinhaalura/pages/cartpage.dart';
 import 'package:lojinhaalura/pages/homepage.dart';
 
@@ -18,7 +19,18 @@ class MyApp extends StatelessWidget {
       },
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: PaletaCores().lilas,
+        textTheme: TextTheme(
+            headline1: TextStyle(
+                fontSize: 20,
+                fontFamily: 'Alata',
+                fontWeight: FontWeight.bold,
+                color: Colors.black),
+            headline2: TextStyle(
+                fontSize: 20,
+                fontFamily: 'Alata',
+                fontWeight: FontWeight.bold,
+                color: Colors.white)),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: const Inicio(),

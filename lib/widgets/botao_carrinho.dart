@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lojinhaalura/pages/homepage.dart';
+import 'package:lojinhaalura/widgets/indicator_botao_cart.dart';
 
 const pathCart = 'utilidades/assets/icones/carrinho.png';
 
@@ -31,11 +33,26 @@ class BotaoCarrinho extends StatelessWidget {
         alignment: Alignment.centerRight,
         height: 40,
         padding: EdgeInsets.only(right: paddingImage, left: paddingImage),
-        child: Image(
-          height: heightImage,
-          image: AssetImage(pathCart),
-        ),
+        child: _visibilityIndicatorCart(),
       ),
+    );
+  }
+
+  _visibilityIndicatorCart() {
+    if (Inicio.itensCarrinho.length > 0) {
+      return Stack(
+        children: [
+          Image(
+            height: heightImage,
+            image: AssetImage(pathCart),
+          ),
+          IndicatorBotaoCart()
+        ],
+      );
+    }
+    return Image(
+      height: heightImage,
+      image: AssetImage(pathCart),
     );
   }
 }

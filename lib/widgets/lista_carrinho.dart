@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:lojinhaalura/model/item_carrinho.dart';
 import 'package:lojinhaalura/model/movel.dart';
 import 'package:lojinhaalura/pages/homepage.dart';
@@ -14,6 +15,7 @@ class ListaCarrinho extends StatefulWidget {
 
 class _ListaCarrinhoState extends State<ListaCarrinho> {
   final List<ItemCarrinho> carrinho = Inicio.itensCarrinho;
+  final formatacaoReais = NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$');
 
   @override
   Widget build(BuildContext context) {
@@ -30,21 +32,28 @@ class _ListaCarrinhoState extends State<ListaCarrinho> {
                 clipBehavior: Clip.hardEdge,
                 child: Row(
                   children: [
-                    Image(
-                        height: 82,
-                        image: AssetImage(
-                            'utilidades/assets/imagens/' + movel.foto)),
+                    Expanded(
+                      child: Image(
+                          height: 82,
+                          image: AssetImage(
+                              'utilidades/assets/imagens/' + movel.foto),
+                          fit: BoxFit.cover),
+                    ),
                     Container(
-                      margin: EdgeInsets.only(left: 10),
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      margin: EdgeInsets.only(left: 20),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(movel.titulo),
+                          Text(
+                            movel.titulo,
+                            style: Theme.of(context).textTheme.headline3,
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('${movel.preco}'),
+                              Text(formatacaoReais.format(movel.preco)),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,

@@ -35,7 +35,7 @@ class CardDetalhes extends StatelessWidget {
                     style: TextButton.styleFrom(
                         backgroundColor: Theme.of(context).primaryColor),
                     onPressed: () {
-                      _adicionarItemCarrinho(
+                      _verificarListaItemCart(Inicio.itensCarrinho,
                           ItemCarrinho(movel: movel, quantidade: 1));
                     },
                     child: Text(
@@ -53,5 +53,14 @@ class CardDetalhes extends StatelessWidget {
   _adicionarItemCarrinho(ItemCarrinho item) {
     Inicio.itensCarrinho.add(item);
     atualizaPage();
+  }
+
+  void _verificarListaItemCart(List<ItemCarrinho> list, ItemCarrinho item) {
+    int indiceMovel = list.indexWhere((element) => element == item);
+    if (indiceMovel >= 0) {
+      list[indiceMovel].quantidade = list[indiceMovel].quantidade + 1;
+    } else {
+      _adicionarItemCarrinho(item);
+    }
   }
 }

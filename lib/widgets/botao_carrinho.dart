@@ -4,7 +4,7 @@ import 'package:lojinhaalura/widgets/indicator_botao_cart.dart';
 
 const pathCart = 'utilidades/assets/icones/carrinho.png';
 
-class BotaoCarrinho extends StatelessWidget {
+class BotaoCarrinho extends StatefulWidget {
   final double circularSize;
   final double paddingImage;
   final double heightImage;
@@ -17,22 +17,29 @@ class BotaoCarrinho extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<BotaoCarrinho> createState() => _BotaoCarrinhoState();
+}
+
+class _BotaoCarrinhoState extends State<BotaoCarrinho> {
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/carrinho');
+        Navigator.pushNamed(context, '/carrinho')
+            .then((value) => setState(() {}));
       },
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(circularSize),
-            bottomLeft: Radius.circular(circularSize),
+            topLeft: Radius.circular(widget.circularSize),
+            bottomLeft: Radius.circular(widget.circularSize),
           ),
         ),
         alignment: Alignment.centerRight,
         height: 40,
-        padding: EdgeInsets.only(right: paddingImage, left: paddingImage),
+        padding: EdgeInsets.only(
+            right: widget.paddingImage, left: widget.paddingImage),
         child: _visibilityIndicatorCart(),
       ),
     );
@@ -43,7 +50,7 @@ class BotaoCarrinho extends StatelessWidget {
       return Stack(
         children: [
           Image(
-            height: heightImage,
+            height: widget.heightImage,
             image: AssetImage(pathCart),
           ),
           IndicatorBotaoCart()
@@ -51,7 +58,7 @@ class BotaoCarrinho extends StatelessWidget {
       );
     }
     return Image(
-      height: heightImage,
+      height: widget.heightImage,
       image: AssetImage(pathCart),
     );
   }

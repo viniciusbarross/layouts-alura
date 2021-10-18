@@ -7,11 +7,16 @@ import 'package:lojinhaalura/model/movel.dart';
 import 'package:lojinhaalura/widgets/appbarcustom.dart';
 import 'package:lojinhaalura/widgets/grid_custom.dart';
 
-class Inicio extends StatelessWidget {
+class Inicio extends StatefulWidget {
   static List<ItemCarrinho> itensCarrinho = [];
 
   const Inicio({Key? key}) : super(key: key);
 
+  @override
+  State<Inicio> createState() => _InicioState();
+}
+
+class _InicioState extends State<Inicio> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +49,11 @@ class Inicio extends StatelessWidget {
                 Divider(),
                 Text('Produtos'),
                 Divider(),
-                Flexible(child: GridProdutos(moveis: moveis)),
+                Flexible(
+                    child: GridProdutos(
+                  moveis: moveis,
+                  atualiza: atualiza,
+                )),
               ],
             );
           // return ListView.builder(
@@ -61,5 +70,9 @@ class Inicio extends StatelessWidget {
         }
       },
     );
+  }
+
+  void atualiza() {
+    setState(() {});
   }
 }

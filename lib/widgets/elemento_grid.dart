@@ -8,15 +8,20 @@ import 'package:lojinhaalura/widgets/titulo_elem_grid.dart';
 
 class ElementoGrid extends StatelessWidget {
   final Movel movel;
+  final Function atualiza;
 
-  const ElementoGrid({Key? key, required this.movel}) : super(key: key);
+  const ElementoGrid({Key? key, required this.movel, required this.atualiza})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => DetailPage(movel: movel)));
+        Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => DetailPage(movel: movel)))
+            .then((value) => atualiza());
       },
       child: Container(
         decoration: BoxDecoration(boxShadow: [

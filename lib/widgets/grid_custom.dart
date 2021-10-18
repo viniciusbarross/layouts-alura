@@ -5,8 +5,9 @@ import 'package:lojinhaalura/widgets/elemento_grid.dart';
 
 class GridProdutos extends StatelessWidget {
   late List<Movel> moveis;
+  final Function atualiza;
 
-  GridProdutos({required this.moveis});
+  GridProdutos({required this.moveis, required this.atualiza});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,10 @@ class GridProdutos extends StatelessWidget {
       itemCount: moveis.length,
       gridDelegate:
           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-      itemBuilder: (context, index) => ElementoGrid(movel: moveis[index]),
+      itemBuilder: (context, index) => ElementoGrid(
+        movel: moveis[index],
+        atualiza: atualiza,
+      ),
     );
   }
 }
